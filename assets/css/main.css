@@ -1,0 +1,23 @@
+@import url("./tailwind.css");
+@import url("./form.css");
+
+:root {
+  --primary-color: "#2a3855";
+  --secondary-color: "#3D4C6F";
+  --white-color: "#fff";
+  --black-color: "#000";
+  --gray-color: "#6a6a6a";
+}
+
+p {
+  font-size: 1rem;
+  color: var(--gray-color);
+}
+
+/* Link styles */
+a {
+  color: var(--primary-color);
+}
+a:hover {
+  color: var(--black-color);
+}
