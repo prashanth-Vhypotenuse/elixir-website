@@ -86,7 +86,7 @@
   </div>
   <!-- desktop and laptop header -->
   <div
-    class="lg:px-[8rem] py-[0.8rem] bg-whiteColor shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50 opacity-95"
+    class="lg:px-[8rem] py-[0.8rem] bg-whiteColor shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50"
   >
     <div class="flex gap-10 items-center">
       <img :src="Images.LogoDark" alt="App-logo" />

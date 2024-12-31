@@ -56,6 +56,38 @@
         "We develop a systematic well-ordered process of analysis, from concept through implementation.",
     },
   ];
+
+  const showYoutubeModal = ref(false);
+
+  const toggleModal = () => {
+    showYoutubeModal.value = !showYoutubeModal.value;
+
+    if (showYoutubeModal.value) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+  };
+
+  const closeModal = () => {
+    showYoutubeModal.value = false;
+    document.body.style.overflow = "visible";
+  };
+
+  // Listen for the Escape key to close the modal
+  const handleEscapeKey = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  };
+
+  onMounted(() => {
+    window.addEventListener("keydown", handleEscapeKey);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("keydown", handleEscapeKey);
+  });
 </script>
 
 <template>
@@ -91,8 +123,8 @@
 
         <!-- <div class="absolute inset-0 flex items-center justify-center"> -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div class="border-8 rounded-full flex items-center cursor-pointer">
-            <Icon name="ion:md-play-circle" size="100px" style="color: white" />
+          <div class="border-8 rounded-full flex items-center cursor-pointer" @click="toggleModal">
+            <Icon name="ion:md-play-circle" size="100px" style="color: white; font-size: 80px" />
           </div>
         </div>
       </div>
@@ -110,4 +142,24 @@
       </div>
     </div>
   </section>
+
+  <!-- Youtube modal -->
+  <div v-if="showYoutubeModal">
+    <div class="fixed top-0 left-0 w-screen h-screen bg-modalOverlayColor z-[99] opacity-95"></div>
+
+    <div class="fixed left-1/2 z-[1000] top-1/2 transform -translate-y-1/2 -translate-x-1/2">
+      <button class="absolute -top-6 -left-7" @click="toggleModal">
+        <Icon name="ion:close-outline" size="30px" style="color: var(--white-color)" />
+      </button>
+      <iframe
+        class="w-[80vw] h-[80vh] lg:w-[70vw] lg:h-[70vh] rounded-md"
+        src="https://www.youtube.com/embed/jlWMTNZNOc0?si=Fy_lK-16moAF00oV"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
 </template>

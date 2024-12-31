@@ -19,6 +19,7 @@ export default {
         lightGrayColor: "var(--light-gray-color)",
         goldColor: "var(--gold-color)",
         darkGoldColor: "var(--dark-gold-color)",
+        modalOverlayColor: "var(--modal-overlay-color)",
       },
       fontSize: {
         "fs--1": ".75019rem",

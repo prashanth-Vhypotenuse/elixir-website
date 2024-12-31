@@ -1,5 +1,8 @@
 <script lang="ts" setup>
   import Heading4 from "~/components/headings/Heading4.vue";
+  // import BannerCarousel from "~/components/homePage/BannerCarousel.vue";
+  import Achivements from "~/components/homePage/Achivements.vue";
+  import ClientTestimonialSlider from "~/components/homePage/ClientTestimonialSlider.vue";
   import GlobalLeadership from "~/components/homePage/GlobalLeadership.vue";
   import LatestNews from "~/components/homePage/LatestNews.vue";
   import OurServices from "~/components/homePage/OurServices.vue";
@@ -16,6 +19,12 @@
       <Heading1 heading="Expert Consultants" heading-class="text-whiteColor" />
     </div>
   </section> -->
+  <!-- <div
+      style="background-image: url('../assets/images/background-15.jpg')"
+    ></div> -->
+
+  <!-- <BannerCarousel /> -->
+
   <WelcomeToElixir />
 
   <OurServices />
@@ -40,6 +49,10 @@
   <RequestACallBack />
 
   <GlobalLeadership />
+
+  <Achivements />
+
+  <ClientTestimonialSlider />
 
   <Partner />
 
