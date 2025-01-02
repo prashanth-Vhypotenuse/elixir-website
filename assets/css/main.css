@@ -10,7 +10,7 @@
   --light-gray-color: #f2f2f2;
   --gold-color: #fdd428;
   --dark-gold-color: #f0c202;
-  --modal-overlay-color: rgba(31, 31, 31, .9)
+  --modal-overlay-color: rgba(31, 31, 31, 0.9);
 }
 
 * {

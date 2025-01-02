@@ -12,7 +12,7 @@
 </script>
 
 <template>
-  <button :type="btnType" @click="handleClick" :class="['btn', btnClass]">
+  <button :type="btnType" @click="handleClick" :class="['btn', btnClass, 'flex gap-1 items-center']">
     {{ label }}
     <slot name="icon" />
   </button>
@@ -22,7 +22,7 @@
   .btn {
     padding: 0.7rem 2rem;
     font-family: Montserrat, sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.75rem;
     letter-spacing: 0.01em;
     border-radius: 3px;

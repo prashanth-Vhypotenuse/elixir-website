@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import Heading4 from "~/components/headings/Heading4.vue";
-  // import BannerCarousel from "~/components/homePage/BannerCarousel.vue";
+  import BannerCarousel from "~/components/homePage/BannerCarousel.vue";
   import Achivements from "~/components/homePage/Achivements.vue";
   import ClientTestimonialSlider from "~/components/homePage/ClientTestimonialSlider.vue";
   import GlobalLeadership from "~/components/homePage/GlobalLeadership.vue";
@@ -23,7 +23,7 @@
       style="background-image: url('../assets/images/background-15.jpg')"
     ></div> -->
 
-  <!-- <BannerCarousel /> -->
+  <BannerCarousel />
 
   <WelcomeToElixir />
 

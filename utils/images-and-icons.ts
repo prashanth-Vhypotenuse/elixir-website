@@ -32,9 +32,21 @@ import whyChooseUsImage from "~/assets/images/why-choose-us.jpg";
 
 import videoScreenShotImage from "~/assets/images/video-screenshot-2.jpg";
 
+// Banner Images
+import bannerImage1 from "~/assets/images/banner/banner-1.jpg";
+import bannerImage2 from "~/assets/images/banner/banner-2.jpg";
+import bannerImage3 from "~/assets/images/banner/banner-3.jpg";
+import bannerImage4 from "~/assets/images/banner/banner-4.jpg";
+
 export const Images = {
   LogoDark: LogoDark,
   LogoLight: LogoLight,
+
+  // Banner Images
+  bannerImage1: bannerImage1,
+  bannerImage2: bannerImage2,
+  bannerImage3: bannerImage3,
+  bannerImage4: bannerImage4,
 
   // Partner Images
   PartnerLogo1: PartnerLogo1,
@@ -65,4 +77,10 @@ export const Images = {
   whyChooseUsImage: whyChooseUsImage,
 
   videoScreenShotImage: videoScreenShotImage,
+};
+
+import video1 from "~/assets/videos/video.mp4";
+
+export const Videos = {
+  video1: video1,
 };
