@@ -45,7 +45,7 @@
           <template #icon>
             <Icon
               name="ion:chevron-forward-outline"
-              style="color: var(--white-color); font-size: 18px"
+              style="color: var(--white-color); font-size: 1.2rem"
             />
           </template>
         </Button>
@@ -54,7 +54,7 @@
           <template #icon>
             <Icon
               name="ion:chevron-forward-outline"
-              style="color: var(--primary-color); font-size: 18px"
+              style="color: var(--primary-color); font-size: 1.2rem"
             />
           </template>
         </Button>

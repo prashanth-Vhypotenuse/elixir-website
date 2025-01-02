@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
   withDefaults(
     defineProps<{
       label: string;
@@ -12,7 +12,11 @@
 </script>
 
 <template>
-  <button :type="btnType" @click="handleClick" :class="['btn', btnClass, 'flex gap-1 items-center']">
+  <button
+    :type="btnType"
+    @click="handleClick"
+    :class="['btn', btnClass, 'flex gap-1 items-center']"
+  >
     {{ label }}
     <slot name="icon" />
   </button>
@@ -25,7 +29,7 @@
     font-weight: 700;
     font-size: 0.75rem;
     letter-spacing: 0.01em;
-    border-radius: 3px;
+    border-radius: 0.1rem;
     transition: all 0.2s ease-in-out;
     line-height: 1.5;
     color: #fff;
@@ -62,7 +66,7 @@
   .btn-white {
     color: var(--black-color);
     background-color: var(--white-color);
-    border-radius: 20px;
+    border-radius: 1.3rem;
   }
 
   .btn-white:focus,
@@ -75,7 +79,7 @@
     color: #2a3855;
     background-image: none;
     background-color: #fff;
-    border: 2px solid #2a3855;
+    border: 0.1rem solid #2a3855;
     border-radius: 8rem;
   }
 

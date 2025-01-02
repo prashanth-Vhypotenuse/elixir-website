@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
   const navBarList = ref([
     {
       label: "Home",
@@ -144,10 +144,10 @@
 
       <div @click="() => (showHeader = !showHeader)" class="cursor-pointer">
         <span v-if="showHeader == false">
-          <Icon name="fa6-solid:bars" size="22px" />
+          <Icon name="fa6-solid:bars" size="1.2rem" />
         </span>
         <span v-else>
-          <Icon name="fa6-solid:x" size="20px" />
+          <Icon name="fa6-solid:x" size="1.2rem" />
         </span>
       </div>
     </div>
@@ -211,6 +211,6 @@
 
 <style>
   .nav-dropdown-container {
-    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 1.8rem 0 rgba(0, 0, 0, 0.08);
   }
 </style>

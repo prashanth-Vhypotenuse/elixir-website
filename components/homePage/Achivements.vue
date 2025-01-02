@@ -25,7 +25,7 @@
         <div class="pt-3">
           <Icon
             name="ion:md-checkmark-circle-outline"
-            size="50px"
+            size="3.2rem"
             style="color: var(--gold-color)"
           />
         </div>

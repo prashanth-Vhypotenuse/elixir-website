@@ -91,7 +91,7 @@
                 <Icon
                   name="fa6-solid:arrow-right-long"
                   style="color: var(--gray-color)"
-                  size="20px"
+                  size="1.2rem"
                 />
               </NuxtLink>
             </div>
@@ -102,7 +102,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 pt-10 md:pt-20">
         <div v-for="service in additionalServices">
           <div class="flex items-center gap-3">
-            <Icon :name="service.icon" size="24px" style="color: var(--primary-color)" />
+            <Icon :name="service.icon" size="1.4rem" style="color: var(--primary-color)" />
             <Heading5 :heading="service.title" />
           </div>
           <p class="pt-3">
@@ -117,7 +117,7 @@
               <Icon
                 v-if="service.linkIcon"
                 :name="service.linkIcon"
-                size="16px"
+                size="1rem"
                 style="color: var(--primary-color)"
               />
             </NuxtLink>

@@ -99,13 +99,13 @@
         @click="() => handleSlideChange('prev')"
         class="absolute -left-1 md:hidden md:group-hover:block md:left-4 top-1/2 transform -translate-y-1/2 text-grayColor hover:text-blackColor"
       >
-        <Icon name="ion:chevron-back-outline" size="30px" />
+        <Icon name="ion:chevron-back-outline" size="1.9rem" />
       </button>
       <button
         @click="() => handleSlideChange('next')"
         class="absolute -right-1 md:hidden md:group-hover:block md:right-4 top-1/2 transform -translate-y-1/2 text-grayColor hover:text-blackColor"
       >
-        <Icon name="ion:chevron-forward-outline" size="30px" />
+        <Icon name="ion:chevron-forward-outline" size="1.9rem" />
       </button>
     </div>
   </div>

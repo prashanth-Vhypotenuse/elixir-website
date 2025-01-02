@@ -64,7 +64,7 @@
           v-for="item in thingsYouGetList"
           class="flex flex-col items-center justify-center text-center gap-2"
         >
-          <Icon :name="item.icon" size="30px" style="color: var(--primary-color)" />
+          <Icon :name="item.icon" size="1.9rem" style="color: var(--primary-color)" />
 
           <Heading5 :heading="item.title" />
 

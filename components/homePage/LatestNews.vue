@@ -63,7 +63,7 @@
               <Icon
                 name="fa6-solid:arrow-right-long"
                 style="color: var(--gray-color)"
-                size="20px"
+                size="1.2rem"
               />
             </NuxtLink>
           </div>

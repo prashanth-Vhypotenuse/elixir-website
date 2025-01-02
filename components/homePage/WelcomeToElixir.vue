@@ -109,7 +109,7 @@
           class="flex flex-col gap-5 items-center p-5"
         >
           <div class="w-24 h-24 rounded-full border flex items-center justify-center">
-            <Icon :name="companyMetric.icon" size="36px" style="color: var(--black-color)" />
+            <Icon :name="companyMetric.icon" size="2.2rem" style="color: var(--black-color)" />
           </div>
 
           <Heading5 heading="Business Consulting" heading-class="text-center" />
@@ -123,8 +123,8 @@
 
         <!-- <div class="absolute inset-0 flex items-center justify-center"> -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div class="border-8 rounded-full flex items-center cursor-pointer" @click="toggleModal">
-            <Icon name="ion:md-play-circle" size="100px" style="color: white; font-size: 80px" />
+          <div class="border-[0.6rem] rounded-full flex items-center cursor-pointer" @click="toggleModal">
+            <Icon name="ion:md-play-circle" style="color: white; font-size: 6rem" />
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 pt-10 md:pt-20">
         <div v-for="support in companySupportList">
           <div class="flex items-center gap-3">
-            <Icon :name="support.icon" size="24px" style="color: var(--primary-color)" />
+            <Icon :name="support.icon" size="1.4rem" style="color: var(--primary-color)" />
             <Heading5 :heading="support.title" />
           </div>
           <p class="pt-3">
@@ -149,7 +149,7 @@
 
     <div class="fixed left-1/2 z-[1000] top-1/2 transform -translate-y-1/2 -translate-x-1/2">
       <button class="absolute -top-6 -left-7" @click="toggleModal">
-        <Icon name="ion:close-outline" size="30px" style="color: var(--white-color)" />
+        <Icon name="ion:close-outline" size="1.9rem" style="color: var(--white-color)" />
       </button>
       <iframe
         class="w-[80vw] h-[80vh] lg:w-[70vw] lg:h-[70vh] rounded-md"

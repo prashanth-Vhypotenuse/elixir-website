@@ -120,13 +120,13 @@
         @click="() => handleSlideChange('prev')"
         class="absolute left-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
-        <Icon name="ion:chevron-back-outline" size="24px" />
+        <Icon name="ion:chevron-back-outline" size="1.4rem" />
       </button>
       <button
         @click="() => handleSlideChange('next')"
         class="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
-        <Icon name="ion:chevron-forward-outline" size="24px" />
+        <Icon name="ion:chevron-forward-outline" size="1.4rem" />
       </button>
 
       <!-- Dots Navigation -->

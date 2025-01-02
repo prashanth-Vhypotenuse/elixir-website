@@ -43,7 +43,7 @@
         <div class="flex flex-col gap-14">
           <div v-for="item in whyTochooseUsList" class="flex flex-col gap-4">
             <div class="flex gap-3 items-center">
-              <Icon :name="item.icon" style="color: var(--primary-color)" size="26px" />
+              <Icon :name="item.icon" style="color: var(--primary-color)" size="1.5rem" />
               <Heading5 :heading="item.title" />
             </div>
             <p>{{ item.description }}</p>

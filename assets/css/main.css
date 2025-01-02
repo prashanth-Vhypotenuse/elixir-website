@@ -1,11 +1,10 @@
 @import url("./tailwind.css");
-@import url("./form.css");
 
 :root {
   --primary-color: #2a3855;
   --secondary-color: #3d4c6f;
-  --white-color: #fff;
-  --black-color: #000;
+  --white-color: #ffffff;
+  --black-color: #000000;
   --gray-color: #6a6a6a;
   --light-gray-color: #f2f2f2;
   --gold-color: #fdd428;
