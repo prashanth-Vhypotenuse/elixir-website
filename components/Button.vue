@@ -14,7 +14,7 @@
 <template>
   <button
     :type="btnType"
-    :class="['btn', btnClass, 'flex gap-1 items-center']"
+    :class="['btn', btnClass, 'flex gap-1 items-center justify-center']"
     @click="handleClick"
   >
     {{ label }}

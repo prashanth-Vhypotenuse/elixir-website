@@ -7,6 +7,7 @@ import type {
   ICompanySupport,
   IFooterLink,
   IGlobalLeader,
+  ILatestNews,
   INavMenu,
   IPartner,
   IService,
@@ -333,6 +334,33 @@ export const CLIENTS: IClientDetails[] = [
     clientImg: Images.clientImage3,
     description:
       "As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails.",
+  },
+];
+
+export const LATEST_NEWS: ILatestNews[] = [
+  {
+    newsName: "Tax impacts of lease mean accounting change",
+    newsBy: "By Paul O'Sullivan",
+    imgPath: Images.newsImage1,
+    description:
+      "HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...",
+    newsLink: "/",
+  },
+  {
+    newsName: "What brexit means for data protection law",
+    newsBy: "By Enrico Ambrosi",
+    imgPath: Images.newsImage2,
+    description:
+      "Assuming that the referendum is not ignored completely, there are two possible futures for the UK...",
+    newsLink: "/",
+  },
+  {
+    newsName: "The growing meanace of social engineering fraud",
+    newsBy: "By Robson",
+    imgPath: Images.newsImage3,
+    description:
+      "Social engineering involves the collection of information from various sources about a target...",
+    newsLink: "/",
   },
 ];
 

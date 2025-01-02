@@ -38,6 +38,11 @@ import bannerImage2 from "~/assets/images/banner/banner-2.jpg";
 import bannerImage3 from "~/assets/images/banner/banner-3.jpg";
 import bannerImage4 from "~/assets/images/banner/banner-4.jpg";
 
+// News Images
+import newsImage1 from "~/assets/images/news/news-1.jpg";
+import newsImage2 from "~/assets/images/news/news-2.jpg";
+import newsImage3 from "~/assets/images/news/news-3.jpg";
+
 export const Images = {
   LogoDark: LogoDark,
   LogoLight: LogoLight,
@@ -77,6 +82,11 @@ export const Images = {
   whyChooseUsImage: whyChooseUsImage,
 
   videoScreenShotImage: videoScreenShotImage,
+
+  // News Images
+  newsImage1: newsImage1,
+  newsImage2: newsImage2,
+  newsImage3: newsImage3,
 };
 
 import video1 from "~/assets/videos/video.mp4";

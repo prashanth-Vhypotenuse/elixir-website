@@ -8,7 +8,7 @@
 <template>
   <!-- Nav top banner -->
   <div class="hidden md:block bg-primaryColor py-5">
-    <div class="px-[2rem] lg:px-[8rem] flex justify-between">
+    <div class="px-[2rem] lg:px-[8rem] flex justify-between top-nav-banner">
       <div class="flex gap-10 items-center">
         <div class="hidden lg:flex gap-2">
           <Icon name="fa-solid:map-marker-alt" style="color: #fdd428" />
@@ -163,5 +163,9 @@
 
   .nav-bg {
     background: rgba(255, 255, 255, 0.85);
+  }
+
+  .top-nav-banner p {
+    font-family: "Open Sans", sans-serif;
   }
 </style>
