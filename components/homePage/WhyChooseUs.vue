@@ -16,7 +16,12 @@
         <img :src="Images.whyChooseUsImage" alt="why to choose us image" />
 
         <div class="flex flex-col gap-14">
-          <div v-for="item in WHY_TO_CHOOSE_US" class="flex flex-col gap-4" data-aos="fade-up">
+          <div
+            v-for="item in WHY_TO_CHOOSE_US"
+            :key="item.title"
+            class="flex flex-col gap-4"
+            data-aos="fade-up"
+          >
             <div class="flex gap-3 items-center">
               <Icon :name="item.icon" style="color: var(--primary-color)" size="1.5rem" />
               <Heading5 :heading="item.title" />

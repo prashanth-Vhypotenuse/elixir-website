@@ -37,7 +37,7 @@
       </div>
       <div class="grid grid-cols-2 gap-10 lg:gap-14">
         <ul class="flex flex-col gap-3.5">
-          <li v-for="item in FOOTER_LINKS">
+          <li v-for="item in FOOTER_LINKS" :key="item.label">
             <NuxtLink :to="item.path" class="!text-whiteColor font-medium hover:underline">{{
               item.label
             }}</NuxtLink>
@@ -45,7 +45,7 @@
         </ul>
 
         <ul class="flex flex-col gap-3.5">
-          <li v-for="item in SOCIAL_MEDIA_LINKS">
+          <li v-for="item in SOCIAL_MEDIA_LINKS" :key="item.label">
             <NuxtLink
               :to="item.path"
               class="!text-white flex gap-2 items-center hover:underline font-semibold"

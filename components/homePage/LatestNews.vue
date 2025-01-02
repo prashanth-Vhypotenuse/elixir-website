@@ -48,7 +48,11 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
         <!-- Card -->
-        <div v-for="news in latestNews" class="bg-whiteColor text-left rounded-md">
+        <div
+          v-for="news in latestNews"
+          :key="news.newsName"
+          class="bg-whiteColor text-left rounded-md"
+        >
           <img :src="news.imgPath" :alt="news.newsName" class="rounded-t-md w-full" />
 
           <div class="p-5" data-aos="fade-up">

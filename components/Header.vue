@@ -38,6 +38,7 @@
         <ul class="flex gap-6">
           <li
             v-for="navItem in NAV_MENUS"
+            :key="navItem.label"
             class="flex gap-3 relative"
             @mouseenter="() => (activeLabel = navItem.label)"
             @mouseleave="() => (activeLabel = '')"
@@ -62,6 +63,7 @@
             >
               <li
                 v-for="subItem in navItem.childList"
+                :key="subItem.label"
                 class="whitespace-nowrap text-[.75019rem] font-[600] text-primaryColor hover:text-black"
                 @click="() => (activeLabel = '')"
               >
@@ -100,6 +102,7 @@
         <ul class="flex gap-3 flex-col">
           <li
             v-for="navItem in NAV_MENUS"
+            :key="navItem.label"
             class="flex flex-col gap-2"
             @click="
               () => {
@@ -131,6 +134,7 @@
             >
               <li
                 v-for="subItem in navItem.childList"
+                :key="subItem.label"
                 class="pl-5 whitespace-nowrap text-[.75019rem] font-[600] text-primaryColor hover:text-black"
                 @click="
                   () => {

@@ -80,7 +80,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 pt-10 md:pt-20">
-        <div v-for="support in COMPANYSUPPORTS" data-aos="fade-up">
+        <div v-for="support in COMPANYSUPPORTS" :key="support.title" data-aos="fade-up">
           <div class="flex items-center gap-3">
             <Icon :name="support.icon" size="1.4rem" style="color: var(--primary-color)" />
             <Heading5 :heading="support.title" />

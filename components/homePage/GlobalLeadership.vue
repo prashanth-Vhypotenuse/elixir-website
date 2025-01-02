@@ -14,7 +14,11 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
         <!-- Card -->
-        <div v-for="leader in GLOBAL_LEADERS" class="bg-whiteColor text-center rounded-md">
+        <div
+          v-for="leader in GLOBAL_LEADERS"
+          :key="leader.name"
+          class="bg-whiteColor text-center rounded-md"
+        >
           <img :src="leader.imgPath" :alt="leader.name" class="rounded-t-md w-full" />
 
           <div class="p-5" data-aos="fade-up">

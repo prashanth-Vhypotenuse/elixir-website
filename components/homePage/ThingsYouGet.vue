@@ -18,6 +18,7 @@
       >
         <div
           v-for="item in THINGS_YOU_GETS"
+          :key="item.title"
           class="flex flex-col items-center justify-center text-center gap-2"
           data-aos="fade-up"
         >

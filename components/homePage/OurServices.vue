@@ -42,7 +42,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-10 pt-10 md:pt-20">
-        <div v-for="service in ADDITIONAL_SERVICES" data-aos="fade-up">
+        <div v-for="service in ADDITIONAL_SERVICES" :key="service.title" data-aos="fade-up">
           <div class="flex items-center gap-3">
             <Icon :name="service.icon" size="1.4rem" style="color: var(--primary-color)" />
             <Heading5 :heading="service.title" />
