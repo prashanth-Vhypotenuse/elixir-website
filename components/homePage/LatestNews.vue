@@ -1,16 +1,16 @@
-<script setup lang="ts">
+<script lang="ts" setup>
   import Heading3 from "../headings/Heading3.vue";
   import Heading5 from "../headings/Heading5.vue";
 
-  type TGlobalLeader = {
+  interface IGlobalLeader {
     newsName: string;
     newsBy: string;
     imgPath: string;
     description: string;
     newsLink: string;
-  };
+  }
 
-  const latestNews: TGlobalLeader[] = [
+  const latestNews: IGlobalLeader[] = [
     {
       newsName: "Tax impacts of lease mean accounting change",
       newsBy: "By Paul O'Sullivan",
@@ -51,7 +51,7 @@
         <div v-for="news in latestNews" class="bg-whiteColor text-left rounded-md">
           <img :src="news.imgPath" :alt="news.newsName" class="rounded-t-md w-full" />
 
-          <div class="p-5">
+          <div class="p-5" data-aos="fade-up">
             <Heading5 :heading="news.newsName" />
             <p class="text-sm pt-1">{{ news.newsBy }}</p>
             <p class="mt-4 md:mt-6">{{ news.description }}</p>

@@ -1,13 +1,8 @@
 <script lang="ts" setup>
   import Heading6 from "~/components/headings/Heading6.vue";
+  import type { IClientDetails } from "~/types/static-types";
 
-  type TClientDetails = {
-    name: string;
-    designation: string;
-    clientImg: string;
-    description: string;
-  };
-  defineProps<{ clientDetails: TClientDetails }>();
+  defineProps<{ clientDetails: IClientDetails }>();
 </script>
 
 <template>

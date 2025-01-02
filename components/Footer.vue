@@ -1,26 +1,11 @@
 <script lang="ts" setup>
+  import { FOOTER_LINKS, SOCIAL_MEDIA_LINKS } from "~/constants/static-data";
   import Button from "./Button.vue";
   import TextInput from "./TextInput.vue";
 
   const formvalues = {
     email: "",
   };
-
-  const footerLinks = [
-    { label: "Contact Us", path: "/" },
-    { label: "FAQ", path: "/" },
-    { label: "Privacy Policy", path: "/" },
-    { label: "Terms of Use", path: "/" },
-    { label: "Global Office", path: "/" },
-    { label: "Local Office", path: "/" },
-  ];
-
-  const socialMediaLinks = [
-    { label: "Linkedin", path: "/", icon: "simple-icons:linkedin" },
-    { label: "Twitter", path: "/", icon: "simple-icons:twitter" },
-    { label: "Facebook", path: "/", icon: "simple-icons:facebook" },
-    { label: "Google+", path: "/", icon: "simple-icons:google" },
-  ];
 </script>
 
 <template>
@@ -52,7 +37,7 @@
       </div>
       <div class="grid grid-cols-2 gap-10 lg:gap-14">
         <ul class="flex flex-col gap-3.5">
-          <li v-for="item in footerLinks">
+          <li v-for="item in FOOTER_LINKS">
             <NuxtLink :to="item.path" class="!text-whiteColor font-medium hover:underline">{{
               item.label
             }}</NuxtLink>
@@ -60,7 +45,7 @@
         </ul>
 
         <ul class="flex flex-col gap-3.5">
-          <li v-for="item in socialMediaLinks">
+          <li v-for="item in SOCIAL_MEDIA_LINKS">
             <NuxtLink
               :to="item.path"
               class="!text-white flex gap-2 items-center hover:underline font-semibold"

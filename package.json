@@ -11,13 +11,18 @@
   },
   "dependencies": {
     "@nuxt/icon": "^1.10.3",
+    "aos": "^2.3.4",
     "nuxt": "^3.15.0",
+    "nuxt-aos": "^1.2.5",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@iconify-json/fa-solid": "^1.2.1",
+    "@iconify-json/fa6-solid": "^1.2.3",
     "@iconify-json/ion": "^1.2.2",
+    "@iconify-json/line-md": "^1.2.4",
+    "@iconify-json/simple-icons": "^1.2.18",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "autoprefixer": "^10.4.17",

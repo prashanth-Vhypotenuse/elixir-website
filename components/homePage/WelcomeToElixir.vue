@@ -1,65 +1,11 @@
 <script lang="ts" setup>
+  import { COMPANY_METRICS, COMPANYSUPPORTS } from "~/constants/static-data";
   import Heading3 from "../headings/Heading3.vue";
   import Heading5 from "../headings/Heading5.vue";
 
-  type TCompanyMetric = {
-    icon: string;
-    title: string;
-    description: string;
-  };
-
-  const companyMetricsList: TCompanyMetric[] = [
-    {
-      icon: "ion:bar-chart",
-      title: "Business Consulting",
-      description: "Solution for every business related problems, readily and skillfully.",
-    },
-    {
-      icon: "ion:md-alarm",
-      title: "Risk Management",
-      description: "Calculate every possible risk in your business, take control over them.",
-    },
-    {
-      icon: "ion:android-bulb",
-      title: "Market Research",
-      description: "Know the market before taking any step, reduce risks before you go.",
-    },
-    {
-      icon: "ion:md-headset",
-      title: "Quality Services",
-      description: "Experience unparalleled service, from beginning to final construction.",
-    },
-  ];
-
-  type TCompanySupport = {
-    icon: string;
-    title: string;
-    description: string;
-  };
-  const companySupportList: TCompanySupport[] = [
-    {
-      icon: "fa-solid:users",
-      title: "Awesome Team",
-      description:
-        "Before talking destination, we shine a spotlight across your organization to fully understand it.",
-    },
-    {
-      icon: "fa-solid:comments",
-      title: "Excellent Support",
-      description:
-        "If you face any trouble, you can always let our dedicated support team help you. They are ready for you 24/7.",
-    },
-    {
-      icon: "fa-solid:bolt",
-      title: "Faster Performance",
-      description:
-        "We develop a systematic well-ordered process of analysis, from concept through implementation.",
-    },
-  ];
-
   const showYoutubeModal = ref(false);
 
-  const toggleModal = () => {
+  const toggleModal = function () {
     showYoutubeModal.value = !showYoutubeModal.value;
 
     if (showYoutubeModal.value) {
@@ -69,13 +15,13 @@
     }
   };
 
-  const closeModal = () => {
+  const closeModal = function () {
     showYoutubeModal.value = false;
     document.body.style.overflow = "visible";
   };
 
   // Listen for the Escape key to close the modal
-  const handleEscapeKey = (event: KeyboardEvent) => {
+  const handleEscapeKey = function (event: KeyboardEvent) {
     if (event.key === "Escape") {
       closeModal();
     }
@@ -104,9 +50,10 @@
 
       <div class="py-8 md:py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div
-          v-for="companyMetric in companyMetricsList"
+          v-for="companyMetric in COMPANY_METRICS"
           :key="companyMetric.title"
           class="flex flex-col gap-5 items-center p-5"
+          data-aos="fade-up"
         >
           <div class="w-24 h-24 rounded-full border flex items-center justify-center">
             <Icon :name="companyMetric.icon" size="2.2rem" style="color: var(--black-color)" />
@@ -123,14 +70,17 @@
 
         <!-- <div class="absolute inset-0 flex items-center justify-center"> -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div class="border-[0.6rem] rounded-full flex items-center cursor-pointer" @click="toggleModal">
+          <div
+            class="border-[0.6rem] rounded-full flex items-center cursor-pointer"
+            @click="toggleModal"
+          >
             <Icon name="ion:md-play-circle" style="color: white; font-size: 6rem" />
           </div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 pt-10 md:pt-20">
-        <div v-for="support in companySupportList">
+        <div v-for="support in COMPANYSUPPORTS" data-aos="fade-up">
           <div class="flex items-center gap-3">
             <Icon :name="support.icon" size="1.4rem" style="color: var(--primary-color)" />
             <Heading5 :heading="support.title" />

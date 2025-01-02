@@ -1,74 +1,37 @@
 <script lang="ts" setup>
   import { onMounted, onUnmounted, ref } from "vue";
   import BannerCard from "../BannerCard.vue";
-
-  type TBannerDetails = {
-    title: string;
-    bannerImgUrl?: string;
-    videoUrl?: string;
-    description: string;
-  };
-
-  const banners: TBannerDetails[] = [
-    {
-      title: "Helping Leaders",
-      bannerImgUrl: Images.bannerImage1,
-      description: "We look forward to help you in taking your company to new height.",
-    },
-    {
-      title: "Expert Consultants",
-      bannerImgUrl: Images.bannerImage2,
-      description:
-        "Over 10 years of experience in helping clients finding comprehensive solutions.",
-    },
-    {
-      title: "Growth Partners",
-      bannerImgUrl: Images.bannerImage3,
-      description: "Connect with top consultants hand-picked by Elixir consulting and finance.",
-    },
-    {
-      title: "Expert Consultants",
-      bannerImgUrl: Images.bannerImage4,
-      description:
-        "Over 10 years of experience in helping clients finding comprehensive solutions.",
-    },
-    {
-      title: "Expert Consultants",
-      videoUrl: Videos.video1,
-      description:
-        "Over 10 years of experience in helping clients finding comprehensive solutions.",
-    },
-  ];
+  import { BANNERS } from "~/constants/static-data";
 
   const activeSlideIndex = ref(0);
   const intervalId = ref<number | null | any>(null);
 
-  const startAutoSlide = () => {
+  const startAutoSlide = function () {
     stopAutoSlide();
     intervalId.value = setInterval(() => {
-      activeSlideIndex.value = (activeSlideIndex.value + 1) % banners.length;
+      activeSlideIndex.value = (activeSlideIndex.value + 1) % BANNERS.length;
     }, 10000);
   };
 
-  const stopAutoSlide = () => {
+  const stopAutoSlide = function () {
     if (intervalId.value !== null) {
       clearInterval(intervalId.value);
       intervalId.value = null;
     }
   };
 
-  const resetAutoSlide = () => {
+  const resetAutoSlide = function () {
     stopAutoSlide();
     startAutoSlide();
   };
 
-  const handleSlideChange = (type: "prev" | "next") => {
+  const handleSlideChange = function (type: "prev" | "next") {
     stopAutoSlide();
     if (type === "prev") {
       activeSlideIndex.value =
-        activeSlideIndex.value === 0 ? banners.length - 1 : activeSlideIndex.value - 1;
+        activeSlideIndex.value === 0 ? BANNERS.length - 1 : activeSlideIndex.value - 1;
     } else {
-      activeSlideIndex.value = (activeSlideIndex.value + 1) % banners.length;
+      activeSlideIndex.value = (activeSlideIndex.value + 1) % BANNERS.length;
     }
     resetAutoSlide();
   };
@@ -89,8 +52,8 @@
         class="flex transition-transform duration-700 ease-in-out"
         :style="{ transform: `translateX(-${activeSlideIndex * 100}%)` }"
       >
-        <div v-for="(banner, index) in banners" :key="index" class="flex-shrink-0 w-full">
-          <BannerCard :banner-details="banner" />
+        <div v-for="(banner, index) in BANNERS" :key="index" class="flex-shrink-0 w-full">
+          <BannerCard :banner-details="banner" :activeBanner="index == activeSlideIndex" />
         </div>
       </div>
 

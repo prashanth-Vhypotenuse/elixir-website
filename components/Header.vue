@@ -1,69 +1,12 @@
 <script lang="ts" setup>
-  const navBarList = ref([
-    {
-      label: "Home",
-      path: "/",
-      childList: [
-        { label: "Slider Header", path: "/" },
-        { label: "Slider Classic", path: "/" },
-        { label: "Static Header", path: "/" },
-        { label: "Static Classic", path: "/" },
-        { label: "Youtube Background", path: "/" },
-        { label: "Youtube Classic", path: "/" },
-        { label: "Self-hosted Video", path: "/" },
-        { label: "Self-hosted Classic", path: "/" },
-      ],
-    },
-    {
-      label: "Pages",
-      path: "/",
-      childList: [
-        { label: "Services", path: "/" },
-        { label: "About", path: "/" },
-        { label: "Alumni", path: "/" },
-        { label: "Blank Page", path: "/" },
-        { label: "404 Page", path: "/" },
-        { label: "Login", path: "/" },
-        { label: "Registration", path: "/" },
-      ],
-    },
-    {
-      label: "News",
-      path: "/",
-      childList: [
-        { label: "Newsroom", path: "/" },
-        { label: "Single News", path: "/" },
-      ],
-    },
-    {
-      label: "Elements",
-      path: "/",
-      childList: [
-        { label: "Buttons", path: "/" },
-        { label: "Colors", path: "/" },
-        { label: "Google Map", path: "/" },
-        { label: "Grid", path: "/" },
-        { label: "Icons", path: "/" },
-        { label: "Layout Helpers", path: "/" },
-        { label: "Modal Video", path: "/" },
-        { label: "Owl Carousal", path: "/" },
-        { label: "Slider", path: "/" },
-        { label: "Typography", path: "/" },
-      ],
-    },
-    {
-      label: "Contact",
-      path: "/",
-      childList: [],
-    },
-  ]);
+  import { NAV_MENUS } from "~/constants/static-data";
 
   const activeLabel = ref("");
   const showHeader = ref(false);
 </script>
 
 <template>
-  <!-- nav top banner -->
+  <!-- Nav top banner -->
   <div class="hidden md:block bg-primaryColor py-5">
     <div class="px-[2rem] lg:px-[8rem] flex justify-between">
       <div class="flex gap-10 items-center">
@@ -84,9 +27,9 @@
       </div>
     </div>
   </div>
-  <!-- desktop and laptop header -->
+  <!-- Desktop and Laptop header -->
   <div
-    class="lg:px-[8rem] py-[0.8rem] bg-whiteColor shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50"
+    class="lg:px-[8rem] nav-bg py-[0.8rem] shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50"
   >
     <div class="flex gap-10 items-center">
       <img :src="Images.LogoDark" alt="App-logo" />
@@ -94,7 +37,7 @@
       <nav>
         <ul class="flex gap-6">
           <li
-            v-for="navItem in navBarList"
+            v-for="navItem in NAV_MENUS"
             class="flex gap-3 relative"
             @mouseenter="() => (activeLabel = navItem.label)"
             @mouseleave="() => (activeLabel = '')"
@@ -135,8 +78,8 @@
     </div>
   </div>
 
-  <!-- mobile header -->
-  <div class="px-[2rem] py-[0.8rem] bg-whiteColor shadow-md sticky top-0 lg:hidden z-50">
+  <!-- Mobile header -->
+  <div class="px-[2rem] py-[0.8rem] nav-bg shadow-md sticky top-0 lg:hidden z-50">
     <div class="flex justify-between items-center">
       <div class="flex gap-10 items-center">
         <img :src="Images.LogoDark" alt="App-logo" />
@@ -156,7 +99,7 @@
       <nav>
         <ul class="flex gap-3 flex-col">
           <li
-            v-for="navItem in navBarList"
+            v-for="navItem in NAV_MENUS"
             class="flex flex-col gap-2"
             @click="
               () => {
@@ -212,5 +155,9 @@
 <style>
   .nav-dropdown-container {
     box-shadow: 0 0 1.8rem 0 rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-bg {
+    background: rgba(255, 255, 255, 0.85);
   }
 </style>

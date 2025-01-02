@@ -1,17 +1,7 @@
 <script lang="ts" setup>
+  import { ACHIVEMENTS } from "~/constants/static-data";
   import Heading2 from "../headings/Heading2.vue";
   import Heading6 from "../headings/Heading6.vue";
-
-  type TAchivement = {
-    name: string;
-    achived: string;
-  };
-  const achivements: TAchivement[] = [
-    { name: "Cases Solved", achived: "52k" },
-    { name: "Trained Experts", achived: "164" },
-    { name: "Branches", achived: "38" },
-    { name: "Satisfied Clients", achived: "100%" },
-  ];
 </script>
 
 <template>
@@ -34,7 +24,7 @@
           <Heading2 heading="do the big things." heading-class="text-whiteColor" />
 
           <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
-            <div v-for="achivement in achivements" :key="achivement.name">
+            <div v-for="achivement in ACHIVEMENTS" :key="achivement.name" data-aos="fade-up">
               <Heading2 :heading="achivement.achived" heading-class="text-whiteColor" />
               <Heading6 :heading="achivement.name" heading-class="text-whiteColor" />
             </div>

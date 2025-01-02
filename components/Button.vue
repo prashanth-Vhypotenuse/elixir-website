@@ -14,8 +14,8 @@
 <template>
   <button
     :type="btnType"
-    @click="handleClick"
     :class="['btn', btnClass, 'flex gap-1 items-center']"
+    @click="handleClick"
   >
     {{ label }}
     <slot name="icon" />

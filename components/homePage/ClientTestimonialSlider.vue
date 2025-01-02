@@ -1,85 +1,55 @@
 <script lang="ts" setup>
   import { onMounted, onUnmounted, ref } from "vue";
-
-  type TClient = {
-    name: string;
-    designation: string;
-    clientImg: string;
-    description: string;
-  };
-
-  const clients: TClient[] = [
-    {
-      name: "Michael Clarke",
-      designation: "CEO, A.E.T Institute",
-      clientImg: Images.clientImage1,
-      description:
-        "Their work on our website and Internet marketing has made a significant difference to our business.",
-    },
-    {
-      name: "Maria Sharapova",
-      designation: "Managing Director, Themewagon Inc.",
-      clientImg: Images.clientImage2,
-      description:
-        "Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask.",
-    },
-    {
-      name: "David Beckham",
-      designation: "Chairman, Harmony Corporation",
-      clientImg: Images.clientImage3,
-      description:
-        "As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails.",
-    },
-  ];
+  import { CLIENTS } from "~/constants/static-data";
 
   const activeSlideIndex = ref(0);
   const intervalId = ref<number | null | any>(null);
 
-  const startAutoSlide = () => {
+  const startAutoSlide = function () {
     stopAutoSlide();
     intervalId.value = setInterval(() => {
-      activeSlideIndex.value = (activeSlideIndex.value + 1) % clients.length;
+      activeSlideIndex.value = (activeSlideIndex.value + 1) % CLIENTS.length;
     }, 10000);
   };
 
-  const stopAutoSlide = () => {
+  const stopAutoSlide = function () {
     if (intervalId.value !== null) {
       clearInterval(intervalId.value);
       intervalId.value = null;
     }
   };
 
-  const resetAutoSlide = () => {
+  const resetAutoSlide = function () {
     stopAutoSlide();
     startAutoSlide();
   };
 
-  const handleSlideChange = (type: "prev" | "next") => {
+  const handleSlideChange = function (type: "prev" | "next") {
     stopAutoSlide();
     if (type === "prev") {
       activeSlideIndex.value =
-        activeSlideIndex.value === 0 ? clients.length - 1 : activeSlideIndex.value - 1;
+        activeSlideIndex.value === 0 ? CLIENTS.length - 1 : activeSlideIndex.value - 1;
     } else {
-      activeSlideIndex.value = (activeSlideIndex.value + 1) % clients.length;
+      activeSlideIndex.value = (activeSlideIndex.value + 1) % CLIENTS.length;
     }
     resetAutoSlide();
   };
 
   let startX = 0;
 
-  const onTouchStart = (event: TouchEvent) => {
+  const onTouchStart = function (event: TouchEvent) {
     stopAutoSlide();
     startX = event.touches[0].clientX;
   };
 
-  const onTouchEnd = (event: TouchEvent) => {
+  const onTouchEnd = function (event: TouchEvent) {
     const endX = event.changedTouches[0].clientX;
     if (startX - endX > 50) handleSlideChange("next");
     if (startX - endX < -50) handleSlideChange("prev");
     resetAutoSlide();
   };
 
-  const onDotClick = (index: number) => {
+  const onDotClick = function (index: number) {
     stopAutoSlide();
     activeSlideIndex.value = index;
     resetAutoSlide();
@@ -110,7 +80,7 @@
         class="flex transition-transform duration-700 ease-in-out"
         :style="{ transform: `translateX(-${activeSlideIndex * 100}%)` }"
       >
-        <div v-for="(client, index) in clients" :key="index" class="flex-shrink-0 w-full">
+        <div v-for="(client, index) in CLIENTS" :key="index" class="flex-shrink-0 w-full">
           <ClientTestimonialCard :clientDetails="client" />
         </div>
       </div>
@@ -132,7 +102,7 @@
       <!-- Dots Navigation -->
       <div class="flex justify-center mt-6 space-x-2">
         <button
-          v-for="(_client, index) in clients"
+          v-for="(_client, index) in CLIENTS"
           :key="index"
           @click="onDotClick(index)"
           :class="[
