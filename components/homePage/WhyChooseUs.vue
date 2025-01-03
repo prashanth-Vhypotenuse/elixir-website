@@ -12,10 +12,10 @@
         <hr class="w-16 h-1 bg-primaryColor mt-2" />
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
-        <img :src="Images.whyChooseUsImage" alt="why to choose us image" />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-16">
+        <img :src="Images.whyChooseUsImage" alt="why to choose us image" class="rounded-md" />
 
-        <div class="flex flex-col gap-14">
+        <div class="flex flex-col gap-14 lg:pr-16">
           <div
             v-for="item in WHY_TO_CHOOSE_US"
             :key="item.title"

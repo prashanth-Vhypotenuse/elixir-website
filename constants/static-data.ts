@@ -7,6 +7,7 @@ import type {
   ICompanySupport,
   IFooterLink,
   IGlobalLeader,
+  ILatestNews,
   INavMenu,
   IPartner,
   IService,
@@ -318,21 +319,48 @@ export const CLIENTS: IClientDetails[] = [
     designation: "CEO, A.E.T Institute",
     clientImg: Images.clientImage1,
     description:
-      "Their work on our website and Internet marketing has made a significant difference to our business.",
+      "Their work on our website and Internet marketing has made a significant different to our business. We’ve seen a 425% increase in quote requests from the website which has been pretty remarkable – but I’d always like to see more!",
   },
   {
     name: "Maria Sharapova",
     designation: "Managing Director, Themewagon Inc.",
     clientImg: Images.clientImage2,
     description:
-      "Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask.",
+      "Writing case studies was a daunting task for us. We didn’t know where to begin or what questions to ask, and clients never seemed to follow through when we asked. Elixir team did everything – with almost no time or effort for me!",
   },
   {
     name: "David Beckham",
     designation: "Chairman, Harmony Corporation",
     clientImg: Images.clientImage3,
     description:
-      "As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails.",
+      "As a sales gamification company, we were skeptical to work with a consultant to optimize our sales emails, but Elixir was highly recommended by many other Y-Combinator startups we knew. Elixir helped us run a ~6 week email campaign.",
+  },
+];
+
+export const LATEST_NEWS: ILatestNews[] = [
+  {
+    newsName: "Tax impacts of lease mean accounting change",
+    newsBy: "By Paul O'Sullivan",
+    imgPath: Images.newsImage1,
+    description:
+      "HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...",
+    newsLink: "/",
+  },
+  {
+    newsName: "What brexit means for data protection law",
+    newsBy: "By Enrico Ambrosi",
+    imgPath: Images.newsImage2,
+    description:
+      "Assuming that the referendum is not ignored completely, there are two possible futures for the UK...",
+    newsLink: "/",
+  },
+  {
+    newsName: "The growing meanace of social engineering fraud",
+    newsBy: "By Robson",
+    imgPath: Images.newsImage3,
+    description:
+      "Social engineering involves the collection of information from various sources about a target...",
+    newsLink: "/",
   },
 ];
 

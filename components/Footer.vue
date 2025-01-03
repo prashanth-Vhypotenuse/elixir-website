@@ -52,7 +52,7 @@
             >
               <span
                 v-if="item.icon"
-                class="px-2 py-1.5 flex bg-primaryColor rounded hover:underline"
+                class="p-3 flex bg-primaryColor rounded hover:underline"
               >
                 <Icon :name="item.icon" style="background: white" />
               </span>

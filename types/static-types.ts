@@ -75,6 +75,14 @@ export interface IClientDetails {
   description: string;
 }
 
+export interface ILatestNews {
+  newsName: string;
+  newsBy: string;
+  imgPath: string;
+  description: string;
+  newsLink: string;
+}
+
 export interface IFooterLink {
   label: string;
   path: string;

@@ -5,21 +5,29 @@
 </script>
 
 <template>
-  <section class="bg-whiteColor md:bg-lightGrayColor">
+  <section class="bg-lightGrayColor">
     <div class="container">
       <div class="flex flex-col items-center mb-10">
         <Heading3 heading="Our Services" />
         <hr class="w-16 h-1 bg-primaryColor mt-2" />
       </div>
 
-      <div v-for="(service, index) in SERVICES" :key="service.serviceTitle">
-        <div class="grid grid-cols-1 md:grid-cols-2 bg-whiteColor">
+      <div class="grid grid-cols-1 gap-y-10 lg:gap-y-0">
+        <div
+          v-for="(service, index) in SERVICES"
+          :key="service.serviceTitle"
+          class="grid grid-cols-1 lg:grid-cols-2 bg-whiteColor place-items-center rounded-md"
+        >
           <img
             :src="service.imgPath"
             :alt="service.serviceTitle + 'image'"
-            :class="[index % 2 ? 'md:order-2' : 'md:order-1']"
+            :class="[
+              index % 2 ? 'lg:order-2' : 'lg:order-1',
+              'rounded-t-md lg:rounded-t-none',
+              index == 0 ? 'lg:rounded-tl-md' : index == 2 ? 'lg:rounded-bl-md' : '',
+            ]"
           />
-          <div :class="[index % 2 ? 'md:order-1' : 'md:order-2', 'p-4 md:p-14']">
+          <div :class="[index % 2 ? 'lg:order-1' : 'lg:order-2', 'p-10 lg:p-14']">
             <div class="flex flex-col gap-4" data-aos="fade-up">
               <Heading5 :heading="service.serviceTitle" />
 

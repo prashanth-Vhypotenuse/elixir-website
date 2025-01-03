@@ -14,7 +14,7 @@
 <template>
   <button
     :type="btnType"
-    :class="['btn', btnClass, 'flex gap-1 items-center']"
+    :class="['btn', btnClass, 'flex gap-1 items-center justify-center']"
     @click="handleClick"
   >
     {{ label }}
@@ -75,10 +75,10 @@
   }
 
   .btn-outline-primary {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.2rem;
     color: #2a3855;
     background-image: none;
-    background-color: #fff;
+    /* background-color: #fff; */
     border: 0.1rem solid #2a3855;
     border-radius: 8rem;
   }

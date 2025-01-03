@@ -1,55 +1,21 @@
 <script lang="ts" setup>
+  import { LATEST_NEWS } from "~/constants/static-data";
   import Heading3 from "../headings/Heading3.vue";
   import Heading5 from "../headings/Heading5.vue";
-
-  interface IGlobalLeader {
-    newsName: string;
-    newsBy: string;
-    imgPath: string;
-    description: string;
-    newsLink: string;
-  }
-
-  const latestNews: IGlobalLeader[] = [
-    {
-      newsName: "Tax impacts of lease mean accounting change",
-      newsBy: "By Paul O'Sullivan",
-      imgPath: Images.leaderImage1,
-      description:
-        "HMRC released a consultation document to flag some potential tax impacts that a forthcoming change...",
-      newsLink: "/",
-    },
-    {
-      newsName: "What brexit means for data protection law",
-      newsBy: "By Enrico Ambrosi",
-      imgPath: Images.leaderImage2,
-      description:
-        "Assuming that the referendum is not ignored completely, there are two possible futures for the UK...",
-      newsLink: "/",
-    },
-    {
-      newsName: "The growing meanace of social engineering fraud",
-      newsBy: "By Robson",
-      imgPath: Images.leaderImage3,
-      description:
-        "Social engineering involves the collection of information from various sources about a target...",
-      newsLink: "/",
-    },
-  ];
 </script>
 
 <template>
   <section class="bg-whiteColor">
     <div class="container">
       <div class="flex flex-col items-center mb-10">
-        <Heading3 heading="Global Leadership" />
+        <Heading3 heading="Latest News" />
         <hr class="w-16 h-1 bg-primaryColor mt-2" />
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
         <!-- Card -->
         <div
-          v-for="news in latestNews"
+          v-for="news in LATEST_NEWS"
           :key="news.newsName"
           class="bg-whiteColor text-left rounded-md"
         >

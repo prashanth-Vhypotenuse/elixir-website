@@ -14,15 +14,6 @@
 </script>
 
 <template>
-  <!-- <section class="bg-primaryColor">
-    <div class="container">
-      <Heading1 heading="Expert Consultants" heading-class="text-whiteColor" />
-    </div>
-  </section> -->
-  <!-- <div
-      style="background-image: url('../assets/images/background-15.jpg')"
-    ></div> -->
-
   <BannerCarousel />
 
   <WelcomeToElixir />
@@ -33,10 +24,10 @@
 
   <!-- Contact Link -->
   <section class="bg-primaryColor">
-    <div class="container flex flex-col md:flex-row gap-5 md:gap-10 md:items-center">
+    <div class="container flex flex-col md:flex-row gap-5 md:items-center">
       <Heading4
         heading="If you have any query related investment... we are available 24/7"
-        heading-class="text-whiteColor"
+        heading-class="text-whiteColor w-full"
       />
       <div class="flex">
         <Button label="Contact Us" btn-class="btn-white whitespace-nowrap" />
