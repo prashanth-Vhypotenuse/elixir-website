@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import Heading4 from "../headings/Heading4.vue";
+  import Heading5 from "../headings/Heading5.vue";
 
   interface IFormValues {
     name: string;
@@ -39,7 +40,7 @@
         class="lg:col-span-5 grid grid-cols-2 gap-6 lg:gap-8 place-content-center"
       >
         <div class="col-span-2">
-          <Heading4 heading="I would like to discuss:" />
+          <Heading5 heading="I would like to discuss:" heading-class="text-whiteColor" />
         </div>
         <TextInput
           v-model="formValues.name"

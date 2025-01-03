@@ -27,9 +27,15 @@
     </div>
 
     <div class="relative container">
-      <div class="max-w-[30rem] lg:max-w-[45rem]">
-        <Heading1 :heading="bannerDetails.title" heading-class="text-primaryColor" />
-        <p data-aos="fade-up" class="text-primaryColor text-fs-1 md:text-fs-2 font-medium py-4">
+      <div class="">
+        <Heading1
+          :heading="bannerDetails.title"
+          heading-class="text-primaryColor max-w-[30rem] lg:max-w-[45rem]"
+        />
+        <p
+          data-aos="fade-up"
+          class="text-primaryColor text-fs-1 md:text-fs-2 font-medium py-4 max-w-[30rem] lg:max-w-[40rem]"
+        >
           {{ bannerDetails.description }}
         </p>
       </div>

@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col md:flex-row gap-8">
+  <div class="flex flex-col md:flex-row gap-8 px-2 md:px-6 lg:px-20">
     <div class="flex justify-center">
       <div class="w-40 md:w-56 h-44 flex justify-end">
         <img

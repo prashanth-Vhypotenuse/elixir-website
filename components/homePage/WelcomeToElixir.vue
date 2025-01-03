@@ -66,7 +66,7 @@
       </div>
 
       <div class="relative my-10">
-        <img :src="Images.videoScreenShotImage" alt="Video Screenshot Image" />
+        <img :src="Images.videoScreenShotImage" alt="Video Screenshot Image" class="rounded-xl" />
 
         <!-- <div class="absolute inset-0 flex items-center justify-center"> -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

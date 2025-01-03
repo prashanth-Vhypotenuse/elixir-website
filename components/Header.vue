@@ -7,76 +7,74 @@
 
 <template>
   <!-- Nav top banner -->
-  <div class="hidden md:block bg-primaryColor py-5">
-    <div class="px-[2rem] lg:px-[8rem] flex justify-between top-nav-banner">
-      <div class="flex gap-10 items-center">
+  <div class="hidden md:block bg-primaryColor py-[1.15rem]">
+    <div class="flex justify-between top-nav-banner container">
+      <div class="flex gap-7 items-center">
         <div class="hidden lg:flex gap-2">
-          <Icon name="fa-solid:map-marker-alt" style="color: #fdd428" />
+          <Icon name="fa-solid:map-marker-alt" style="color: #fdd428; font-size: 0.85rem" />
           <p class="font-bold text-fs--1 text-whiteColor">1010 Avenue, New York, NY 10018 US.</p>
         </div>
 
         <div class="flex gap-2">
-          <Icon name="fa-solid:phone-alt" style="color: #fdd428" />
+          <Icon name="fa-solid:phone-alt" style="color: #fdd428; font-size: 0.85rem" />
           <p class="font-bold text-fs--1 text-whiteColor">212 386 5575, 212 386 5576</p>
         </div>
       </div>
 
       <div class="flex gap-2">
-        <Icon name="fa-solid:clock" style="color: #fdd428" />
+        <Icon name="fa-solid:clock" style="color: #fdd428; font-size: 0.85rem" />
         <p class="font-bold text-fs--1 text-whiteColor">Mon-Sat, 8.00-18.00. Sunday CLOSED</p>
       </div>
     </div>
   </div>
   <!-- Desktop and Laptop header -->
   <div
-    class="lg:px-[8rem] nav-bg py-[0.8rem] shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50"
+    class="nav-bg py-[0.6rem] shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50"
   >
-    <div class="flex gap-10 items-center">
-      <img :src="Images.LogoDark" alt="App-logo" />
+    <div class="flex justify-between container">
+      <div class="flex gap-8 items-center">
+        <img :src="Images.LogoDark" alt="App-logo" />
 
-      <nav>
-        <ul class="flex gap-6">
-          <li
-            v-for="navItem in NAV_MENUS"
-            :key="navItem.label"
-            class="flex gap-3 relative"
-            @mouseenter="() => (activeLabel = navItem.label)"
-            @mouseleave="() => (activeLabel = '')"
-          >
-            <div class="flex justify-center items-center gap-1 cursor-pointer">
-              <NuxtLink
-                :to="navItem.path"
-                style="color: #2a3855; font-weight: 600; font-size: 1rem"
-              >
-                {{ navItem.label }}
-              </NuxtLink>
-              <Icon
-                v-if="navItem.childList?.length > 0"
-                name="line-md:chevron-down"
-                style="color: #2a3855; font-size: 1.1rem"
-              />
-            </div>
-
-            <ul
-              v-if="navItem.childList?.length > 0 && activeLabel == navItem.label"
-              class="absolute flex flex-col p-5 gap-2 top-6 bg-whiteColor z-50 rounded nav-dropdown-container"
+        <nav>
+          <ul class="flex gap-6">
+            <li
+              v-for="navItem in NAV_MENUS"
+              :key="navItem.label"
+              class="flex gap-2 relative"
+              @mouseenter="() => (activeLabel = navItem.label)"
+              @mouseleave="() => (activeLabel = '')"
             >
-              <li
-                v-for="subItem in navItem.childList"
-                :key="subItem.label"
-                class="whitespace-nowrap text-[.75019rem] font-[600] text-primaryColor hover:text-black"
-                @click="() => (activeLabel = '')"
-              >
-                <NuxtLink :to="subItem.path">{{ subItem.label }}</NuxtLink>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
+              <div class="flex justify-center items-center cursor-pointer">
+                <NuxtLink :to="navItem.path" class="text-primaryColor font-semibold text-fs-0">
+                  {{ navItem.label }}
+                </NuxtLink>
+                <Icon
+                  v-if="navItem.childList?.length > 0"
+                  name="line-md:chevron-down"
+                  style="color: var(--primary-color); font-size: 1rem"
+                />
+              </div>
 
-    <div>
-      <Button label="Purchase" btn-class="btn-outline-primary" />
+              <ul
+                v-if="navItem.childList?.length > 0 && activeLabel == navItem.label"
+                class="absolute flex flex-col p-5 gap-4 top-6 bg-whiteColor z-50 rounded nav-dropdown-container"
+              >
+                <li
+                  v-for="subItem in navItem.childList"
+                  :key="subItem.label"
+                  class="whitespace-nowrap text-fs--1 font-semibold text-primaryColor hover:text-black"
+                  @click="() => (activeLabel = '')"
+                >
+                  <NuxtLink :to="subItem.path">{{ subItem.label }}</NuxtLink>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <Button label="Purchase" btn-class="btn-outline-primary" />
+      </div>
     </div>
   </div>
 
