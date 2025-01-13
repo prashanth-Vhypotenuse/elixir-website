@@ -1,7 +1,28 @@
 <script lang="ts" setup>
-  import { LATEST_NEWS } from "~/constants/static-data";
+  // import { LATEST_NEWS } from "~/constants/static-data";
   import Heading3 from "../headings/Heading3.vue";
   import Heading5 from "../headings/Heading5.vue";
+  import getEnvironmentVariables, { EnvLabel } from "~/config/env-variables";
+  import type { TContentItem } from "~/types/api-data-type";
+  import { GetPageContentApi } from "~/services/home";
+
+  const baseURL = getEnvironmentVariables(EnvLabel.apiBaseURL);
+
+  const latestNews = ref<TContentItem[]>([]);
+
+  async function getLatestNewsData() {
+    const { data = null, status = 500 } = await GetPageContentApi({ Type: "News" });
+
+    if (status == 200) {
+      latestNews.value = getPageContent(data);
+    } else {
+      latestNews.value = [];
+    }
+  }
+
+  onMounted(() => {
+    Promise.all([getLatestNewsData()]);
+  });
 </script>
 
 <template>
@@ -15,25 +36,30 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
         <!-- Card -->
         <div
-          v-for="news in LATEST_NEWS"
-          :key="news.newsName"
+          v-for="news in latestNews"
+          :key="news.title"
           class="bg-whiteColor text-left rounded-md"
         >
-          <img :src="news.imgPath" :alt="news.newsName" class="rounded-t-md w-full" />
+          <img
+            :src="`${baseURL}${news.imagePath}`"
+            :alt="news.title"
+            class="rounded-t-md w-full"
+          />
 
           <div class="p-5" data-aos="fade-up">
-            <Heading5 :heading="news.newsName" />
-            <p class="text-sm pt-1">{{ news.newsBy }}</p>
+            <Heading5 :heading="news.title" />
+            <p class="text-sm pt-1">{{ news.subTitle }}</p>
             <p class="mt-4 md:mt-6">{{ news.description }}</p>
             <NuxtLink
-              :to="news.newsLink"
+              :to="news.linkPath"
               class="mt-4 flex gap-2 items-center font-semibold hover:underline !text-primaryColor"
             >
-              Learn More
+              <!-- Learn More -->
+              {{ news.linkText || "Learn More" }}
               <Icon
-                name="fa6-solid:arrow-right-long"
+                :name="news.linkIcon ? news.linkIcon : 'fa6-solid:arrow-right-long'"
                 style="color: var(--gray-color)"
-                size="1.2rem"
+                size="1rem"
               />
             </NuxtLink>
           </div>

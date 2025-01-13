@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import { GetPageContentApi } from "~/services/home";
   import Heading4 from "../headings/Heading4.vue";
   import Heading5 from "../headings/Heading5.vue";
 
@@ -11,6 +12,31 @@
     name: "",
     phoneNo: "",
     subject: "",
+  });
+
+  const requestCall = ref({
+    title: "",
+    description: "",
+  });
+
+  async function getLatestNewsData() {
+    const { data = null, status = 500 } = await GetPageContentApi({ Type: "RequestCall" });
+
+    if (status == 200) {
+      requestCall.value = {
+        title: getLength(data) > 0 ? data[0]?.title : "",
+        description: getLength(data) > 0 ? data[0]?.description : "",
+      };
+    } else {
+      requestCall.value = {
+        title: "",
+        description: "",
+      };
+    }
+  }
+
+  onMounted(() => {
+    Promise.all([getLatestNewsData()]);
   });
 
   const handleFormValueChanges = (fieldName: string, fieldValue: string) => {
@@ -29,10 +55,14 @@
   <section class="bg-primaryColor">
     <div class="container grid grid-cols-1 lg:grid-cols-8 gap-8 lg:gap-16">
       <div class="lg:col-span-3 border-2 border-goldColor p-10 text-center rounded-xl">
-        <Heading4 heading="Request a call back" data-aos="fade-up" />
-        <p class="text-whiteColor" data-aos="fade-up">
+        <!-- <Heading4 heading="Request a call back" data-aos="fade-up" /> -->
+        <Heading4 :heading="requestCall.title" data-aos="fade-up" />
+        <!-- <p class="text-whiteColor pt-4" data-aos="fade-up">
           Would you like to speak to one of our financial advisers over the phone? Just submit your
           details and we’ll be in touch shortly. You can also email us if you would prefer.
+        </p> -->
+        <p class="text-whiteColor pt-4" data-aos="fade-up">
+          {{ requestCall.description }}
         </p>
       </div>
       <form

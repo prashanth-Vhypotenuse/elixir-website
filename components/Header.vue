@@ -1,8 +1,82 @@
 <script lang="ts" setup>
-  import { NAV_MENUS } from "~/constants/static-data";
+  // import { NAV_MENUS } from "~/constants/static-data";
+  import { GetMenuListApi, GetPageContentApi } from "~/services/home";
+  import type { TMenus, TContentItem } from "~/types/api-data-type";
 
   const activeLabel = ref("");
   const showHeader = ref(false);
+
+  const scrollY = ref(0);
+
+  const initialBannerValue = {
+    icon: "",
+    description: "",
+  };
+
+  const topBannerContent = ref({
+    address: initialBannerValue,
+    phoneNo: initialBannerValue,
+    officeTiming: initialBannerValue,
+  });
+  const NavMenus = ref<TMenus[]>([]);
+
+  const handleScroll = () => {
+    scrollY.value = window.scrollY;
+  };
+
+  async function GetMenuListData() {
+    const { data = null, status = 500 } = await GetMenuListApi({ Type: 0 });
+
+    if (status == 200) {
+      NavMenus.value = getMenusData(data);
+    } else {
+      NavMenus.value = [];
+    }
+  }
+
+  async function getTopBannerData() {
+    const { data = null, status = 500 } = await GetPageContentApi({ Type: "TopBanner" });
+    const newAddress = getPageContent(data).find((item: TContentItem) => item.title == "Address");
+    const newPhNo = getPageContent(data).find((item: TContentItem) => item.title == "PhonesNumber");
+    const newTime = getPageContent(data).find((item: TContentItem) => item.title == "OfficeTiming");
+
+    if (status == 200) {
+      topBannerContent.value = {
+        address: {
+          icon: getTextForNull(newAddress?.icon),
+          description: getTextForNull(newAddress?.description),
+        },
+        phoneNo: {
+          icon: getTextForNull(newPhNo?.icon),
+          description: getTextForNull(newPhNo?.description),
+        },
+        officeTiming: {
+          icon: getTextForNull(newTime?.icon),
+          description: getTextForNull(newTime?.description),
+        },
+      };
+    } else {
+      topBannerContent.value = {
+        address: initialBannerValue,
+        phoneNo: initialBannerValue,
+        officeTiming: initialBannerValue,
+      };
+    }
+  }
+
+  onBeforeMount(() => {
+    Promise.all([getTopBannerData(), GetMenuListData()]);
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  // onMounted(() => {
+  //   Promise.all([getTopBannerData(), GetMenuListData()]);
+  //   window.addEventListener("scroll", handleScroll);
+  // });
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
 </script>
 
 <template>
@@ -11,25 +85,43 @@
     <div class="flex justify-between top-nav-banner container">
       <div class="flex gap-7 items-center">
         <div class="hidden lg:flex gap-2">
-          <Icon name="fa-solid:map-marker-alt" style="color: #fdd428; font-size: 0.85rem" />
-          <p class="font-bold text-fs--1 text-whiteColor">1010 Avenue, New York, NY 10018 US.</p>
+          <!-- <Icon name="fa-solid:map-marker-alt" style="color: #fdd428; font-size: 0.85rem" /> -->
+          <Icon :name="topBannerContent.address.icon" style="color: #fdd428; font-size: 0.85rem" />
+          <!-- <p class="font-bold text-fs--1 text-whiteColor">1010 Avenue, New York, NY 10018 US.</p> -->
+          <p class="font-bold text-fs--1 text-whiteColor">
+            {{ topBannerContent.address.description }}
+          </p>
         </div>
 
         <div class="flex gap-2">
-          <Icon name="fa-solid:phone-alt" style="color: #fdd428; font-size: 0.85rem" />
-          <p class="font-bold text-fs--1 text-whiteColor">212 386 5575, 212 386 5576</p>
+          <!-- <Icon name="fa-solid:phone-alt" style="color: #fdd428; font-size: 0.85rem" />
+          <p class="font-bold text-fs--1 text-whiteColor">212 386 5575, 212 386 5576</p> -->
+          <Icon :name="topBannerContent.phoneNo.icon" style="color: #fdd428; font-size: 0.85rem" />
+          <p class="font-bold text-fs--1 text-whiteColor">
+            {{ topBannerContent.phoneNo.description }}
+          </p>
         </div>
       </div>
 
       <div class="flex gap-2">
-        <Icon name="fa-solid:clock" style="color: #fdd428; font-size: 0.85rem" />
-        <p class="font-bold text-fs--1 text-whiteColor">Mon-Sat, 8.00-18.00. Sunday CLOSED</p>
+        <!-- <Icon name="fa-solid:clock" style="color: #fdd428; font-size: 0.85rem" />
+        <p class="font-bold text-fs--1 text-whiteColor">Mon-Sat, 8.00-18.00. Sunday CLOSED</p> -->
+        <Icon
+          :name="topBannerContent.officeTiming.icon"
+          style="color: #fdd428; font-size: 0.85rem"
+        />
+        <p class="font-bold text-fs--1 text-whiteColor">
+          {{ topBannerContent.officeTiming.description }}
+        </p>
       </div>
     </div>
   </div>
   <!-- Desktop and Laptop header -->
   <div
-    class="nav-bg py-[0.6rem] shadow-md hidden lg:flex justify-between items-center sticky top-0 z-50"
+    :class="[
+      scrollY > 50 ? 'sticky' : 'relative',
+      'nav-bg py-[0.6rem] shadow-md hidden lg:flex justify-between items-center top-0 z-50',
+    ]"
   >
     <div class="flex justify-between container">
       <div class="flex gap-8 items-center">
@@ -38,34 +130,34 @@
         <nav>
           <ul class="flex gap-6">
             <li
-              v-for="navItem in NAV_MENUS"
-              :key="navItem.label"
+              v-for="navItem in NavMenus"
+              :key="navItem.id"
               class="flex gap-2 relative"
-              @mouseenter="() => (activeLabel = navItem.label)"
+              @mouseenter="() => (activeLabel = navItem.name)"
               @mouseleave="() => (activeLabel = '')"
             >
               <div class="flex justify-center items-center cursor-pointer">
-                <NuxtLink :to="navItem.path" class="text-primaryColor font-semibold text-fs-0">
-                  {{ navItem.label }}
+                <NuxtLink :to="navItem.link" class="text-primaryColor font-semibold text-fs-0">
+                  {{ navItem.name }}
                 </NuxtLink>
                 <Icon
-                  v-if="navItem.childList?.length > 0"
+                  v-if="navItem.subMenus?.length > 0"
                   name="line-md:chevron-down"
                   style="color: var(--primary-color); font-size: 1rem"
                 />
               </div>
 
               <ul
-                v-if="navItem.childList?.length > 0 && activeLabel == navItem.label"
+                v-if="navItem.subMenus?.length > 0 && activeLabel == navItem.name"
                 class="absolute flex flex-col p-5 gap-4 top-6 bg-whiteColor z-50 rounded nav-dropdown-container"
               >
                 <li
-                  v-for="subItem in navItem.childList"
-                  :key="subItem.label"
+                  v-for="subItem in navItem.subMenus"
+                  :key="subItem.name"
                   class="whitespace-nowrap text-fs--1 font-semibold text-primaryColor hover:text-black"
                   @click="() => (activeLabel = '')"
                 >
-                  <NuxtLink :to="subItem.path">{{ subItem.label }}</NuxtLink>
+                  <NuxtLink :to="subItem.link">{{ subItem.name }}</NuxtLink>
                 </li>
               </ul>
             </li>
@@ -79,7 +171,12 @@
   </div>
 
   <!-- Mobile header -->
-  <div class="px-[2rem] py-[0.8rem] nav-bg shadow-md sticky top-0 lg:hidden z-50">
+  <div
+    :class="[
+      scrollY > 50 ? 'sticky' : 'relative',
+      'px-[2rem] py-[0.8rem] nav-bg shadow-md top-0 lg:hidden z-50',
+    ]"
+  >
     <div class="flex justify-between items-center">
       <div class="flex gap-10 items-center">
         <img :src="Images.LogoDark" alt="App-logo" />
@@ -99,40 +196,40 @@
       <nav>
         <ul class="flex gap-3 flex-col">
           <li
-            v-for="navItem in NAV_MENUS"
-            :key="navItem.label"
+            v-for="navItem in NavMenus"
+            :key="navItem.id"
             class="flex flex-col gap-2"
             @click="
               () => {
-                if (navItem.label === activeLabel) {
+                if (navItem.name === activeLabel) {
                   activeLabel = '';
                 } else {
-                  activeLabel = navItem.label;
+                  activeLabel = navItem.name;
                 }
               }
             "
           >
             <div class="flex justify-between items-center gap-1 cursor-pointer">
               <NuxtLink
-                :to="navItem.path"
+                :to="navItem.link"
                 style="color: #2a3855; font-weight: 600; font-size: 1rem"
               >
-                {{ navItem.label }}
+                {{ navItem.name }}
               </NuxtLink>
               <Icon
-                v-if="navItem.childList?.length > 0"
+                v-if="navItem.subMenus?.length > 0"
                 name="line-md:chevron-down"
                 style="color: #2a3855; font-size: 1.1rem"
               />
             </div>
 
             <ul
-              v-if="navItem.childList?.length > 0 && activeLabel == navItem.label"
+              v-if="navItem.subMenus?.length > 0 && activeLabel == navItem.name"
               class="flex flex-col p-5 gap-2 bg-white z-50 rounded nav-dropdown-container"
             >
               <li
-                v-for="subItem in navItem.childList"
-                :key="subItem.label"
+                v-for="subItem in navItem.subMenus"
+                :key="subItem.id"
                 class="pl-5 whitespace-nowrap text-[.75019rem] font-[600] text-primaryColor hover:text-black"
                 @click="
                   () => {
@@ -141,7 +238,7 @@
                   }
                 "
               >
-                <NuxtLink :to="subItem.path">{{ subItem.label }}</NuxtLink>
+                <NuxtLink :to="subItem.link">{{ subItem.name }}</NuxtLink>
               </li>
             </ul>
           </li>

@@ -308,7 +308,7 @@ export const PARTNERS: IPartner[] = [
   { srcPath: Images.PartnerLogo1, alt: "logo1" },
   { srcPath: Images.PartnerLogo2, alt: "logo2" },
   { srcPath: Images.PartnerLogo3, alt: "logo3" },
-  { srcPath: Images.PartnerLogo4, alt: "logo4" },
+  { srcPath: Images.PartnerLogo4, alt: "logo4" }, 
   { srcPath: Images.PartnerLogo5, alt: "logo5" },
   { srcPath: Images.PartnerLogo6, alt: "logo6" },
 ];

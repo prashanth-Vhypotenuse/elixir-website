@@ -69,6 +69,74 @@ section {
 a {
   color: var(--primary-color);
 }
+
 a:hover {
   color: var(--black-color);
+}
+
+
+/* loader */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: #2a3855;
+  transition: opacity .8s cubic-bezier(.77, 0, .18, 1);
+  opacity: 0;
+}
+
+#preloader.loading {
+  opacity: 1;
+}
+
+@keyframes line-scale {
+
+  0%,
+  100% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1)
+  }
+
+  50% {
+    -webkit-transform: scaley(.4);
+    transform: scaley(.4)
+  }
+}
+
+.line-scale>div:nth-child(1) {
+  animation: line-scale 1s -.4s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(2) {
+  animation: line-scale 1s -.3s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(3) {
+  animation: line-scale 1s -.2s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(4) {
+  animation: line-scale 1s -.1s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(5) {
+  animation: line-scale 1s 0s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div {
+  animation-fill-mode: both;
+  display: inline-block
+}
+
+.line-scale-party>div,
+.line-scale>div {
+  background-color: #fff;
+  border-radius: 2px;
+  margin: 2px;
+  width: 4px;
+  height: 35px;
+  animation-fill-mode: both
 }

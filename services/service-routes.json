@@ -1,0 +1,12 @@
+{
+  "home": {
+    "menuList": {
+      "endpoint": "Menu",
+      "method": "GET"
+    },
+    "content": {
+      "endpoint": "Content",
+      "method": "GET"
+    }
+  }
+}

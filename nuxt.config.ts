@@ -15,13 +15,19 @@ export default defineNuxtConfig({
     },
   },
   css: ["~/assets/css/main.css"],
+  runtimeConfig: {
+    public: {
+      mode: process.env.MODE,
+      apiBaseURL: process.env.API_BASE_URL,
+    },
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  modules: ["@nuxt/icon", "@nuxtjs/google-fonts", "nuxt-aos"],
+  modules: ["@nuxt/icon", "@nuxtjs/google-fonts", "nuxt-aos", "@pinia/nuxt"],
   googleFonts: {
     families: {
       Montserrat: [100, 200, 300, 400, 500, 600, 700, 800, 900],

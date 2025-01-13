@@ -1,11 +1,29 @@
 <script lang="ts" setup>
-  import { FOOTER_LINKS, SOCIAL_MEDIA_LINKS } from "~/constants/static-data";
+  // import { FOOTER_LINKS, SOCIAL_MEDIA_LINKS } from "~/constants/static-data";
   import Button from "./Button.vue";
   import TextInput from "./TextInput.vue";
+  import type { TMenus } from "~/types/api-data-type";
+  import { GetMenuListApi } from "~/services/home";
 
   const formvalues = {
     email: "",
   };
+
+  const FooterList = ref<TMenus[]>([]);
+
+  async function GetMenuListData() {
+    const { data = null, status = 500 } = await GetMenuListApi({ Type: 1 });
+
+    if (status == 200) {
+      FooterList.value = getMenusData(data);
+    } else {
+      FooterList.value = [];
+    }
+  }
+
+  onMounted(() => {
+    Promise.all([GetMenuListData()]);
+  });
 </script>
 
 <template>
@@ -36,27 +54,16 @@
         </form>
       </div>
       <div class="grid grid-cols-2 gap-10 lg:gap-14">
-        <ul class="flex flex-col gap-3.5">
-          <li v-for="item in FOOTER_LINKS" :key="item.label">
-            <NuxtLink :to="item.path" class="!text-whiteColor font-medium hover:underline">{{
-              item.label
-            }}</NuxtLink>
-          </li>
-        </ul>
-
-        <ul class="flex flex-col gap-3.5">
-          <li v-for="item in SOCIAL_MEDIA_LINKS" :key="item.label">
+        <ul v-for="footerMenu in FooterList" :key="footerMenu.id" class="flex flex-col gap-3.5">
+          <li v-for="sunMenu in footerMenu.subMenus" :key="sunMenu.id">
             <NuxtLink
-              :to="item.path"
-              class="!text-white flex gap-2 items-center hover:underline font-semibold"
+              :to="sunMenu.link"
+              class="!text-whiteColor flex gap-2 items-center font-medium hover:underline"
             >
-              <span
-                v-if="item.icon"
-                class="p-3 flex bg-primaryColor rounded hover:underline"
-              >
-                <Icon :name="item.icon" style="background: white" />
+              <span v-if="sunMenu.icon" class="p-3 flex bg-primaryColor rounded hover:underline">
+                <Icon :name="sunMenu.icon" style="background: white; font-size: 18px;" />
               </span>
-              {{ item.label }}
+              {{ sunMenu.name }}
             </NuxtLink>
           </li>
         </ul>

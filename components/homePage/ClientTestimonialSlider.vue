@@ -1,9 +1,27 @@
 <script lang="ts" setup>
   import { onMounted, onUnmounted, ref } from "vue";
   import { CLIENTS } from "~/constants/static-data";
+  import { GetPageContentApi } from "~/services/home";
+  import type { TContentItem } from "~/types/api-data-type";
 
   const activeSlideIndex = ref(0);
   const intervalId = ref<number | null | any>(null);
+
+  const clients = ref<TContentItem[]>([]);
+
+  async function getClientsData() {
+    const { data = null, status = 500 } = await GetPageContentApi({ Type: "Clients" });
+
+    if (status == 200) {
+      clients.value = getPageContent(data);
+    } else {
+      clients.value = [];
+    }
+  }
+
+  onMounted(() => {
+    Promise.all([getClientsData()]);
+  });
 
   const startAutoSlide = function () {
     stopAutoSlide();
@@ -80,7 +98,7 @@
         class="flex transition-transform duration-700 ease-in-out"
         :style="{ transform: `translateX(-${activeSlideIndex * 100}%)` }"
       >
-        <div v-for="(client, index) in CLIENTS" :key="index" class="flex-shrink-0 w-full">
+        <div v-for="(client, index) in clients" :key="index" class="flex-shrink-0 w-full">
           <ClientTestimonialCard :clientDetails="client" />
         </div>
       </div>

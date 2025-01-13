@@ -1,10 +1,15 @@
 <script lang="ts" setup>
-  import type { IBannerDetails } from "~/types/static-types";
+  // import type { IBannerDetails } from "~/types/static-types";
   import Heading1 from "./headings/Heading1.vue";
+  import getEnvironmentVariables, { EnvLabel } from "~/config/env-variables";
+  import type { TBannerItem } from "~/types/api-data-type";
 
-  const props = defineProps<{ bannerDetails?: IBannerDetails; activeBanner: boolean }>();
+  const baseURL = getEnvironmentVariables(EnvLabel.apiBaseURL);
 
-  const defaultBannerDetails: IBannerDetails = {
+  const props = defineProps<{ bannerDetails?: TBannerItem; activeBanner: boolean }>();
+
+  const defaultBannerDetails: TBannerItem = {
+    id: 0,
     title: "",
     bannerImgUrl: "",
     videoUrl: "",
@@ -16,25 +21,25 @@
 </script>
 
 <template>
-  <div class="relative py-5 min-h-[85vh] flex">
+  <div class="relative py-5 min-h-[75vh] flex">
     <div
-      :style="{ 'background-image': `url(${bannerDetails.bannerImgUrl})` }"
+      :style="{ 'background-image': `url(${baseURL}/${bannerDetails.bannerImgUrl})` }"
       class="absolute backgroundImage w-full min-h-[100%] left-0 top-0 bg-center bg-cover overflow-hidden z-[-1] backface-hidden bg-no-repeat"
     >
       <video v-if="bannerDetails.videoUrl" autoplay loop muted class="min-h-[85vh] object-cover">
-        <source :src="bannerDetails.videoUrl" type="video/mp4" />
+        <source :src="`${baseURL}/${bannerDetails.videoUrl}`" type="video/mp4" />
       </video>
     </div>
 
     <div class="relative container" :class="[activeBanner ? 'content-reveal' : '']">
-      <div>
+      <div class="mt-12">
         <Heading1
           :heading="bannerDetails.title"
-          heading-class="text-primaryColor max-w-[30rem] lg:max-w-[45rem]"
+          heading-class="text-primaryColor max-w-[30rem] lg:max-w-[45rem] -tracking-[0.25rem]"
         />
 
         <p
-          class="text-primaryColor text-fs-1 md:text-fs-2 font-medium py-4 max-w-[30rem] lg:max-w-[40rem]"
+          class="text-primaryColor text-fs-1 md:text-fs-2 py-4 max-w-[30rem] lg:max-w-[40rem] leading-8"
         >
           {{ bannerDetails.description }}
         </p>
@@ -42,7 +47,7 @@
 
       <div class="py-8 flex flex-col md:flex-row gap-5">
         <div>
-          <Button label="Read More" btn-class="btn-primary">
+          <Button label="Read More" btn-class="btn-primary !rounded">
             <template #icon>
               <Icon
                 name="ion:chevron-forward-outline"
@@ -53,7 +58,7 @@
         </div>
 
         <div>
-          <Button label="Contact Us" btn-class="btn-warning">
+          <Button label="Contact Us" btn-class="btn-warning !rounded">
             <template #icon>
               <Icon
                 name="ion:chevron-forward-outline"
